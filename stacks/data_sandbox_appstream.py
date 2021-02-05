@@ -238,7 +238,8 @@ class AppstreamStack(cfn.NestedStack):
             on_create=s3_event_config_custom_sdk_param,
             on_update=s3_event_config_custom_sdk_delete_param,
             on_delete=s3_event_config_custom_sdk_delete_param,
-            policy=s3_event_config_custom_sdk_policy
+            policy=s3_event_config_custom_sdk_policy,
+            log_retention=logs.RetentionDays.THREE_MONTHS
         )
         
         #build custom resource to assign IAM role to AppStream fleet
