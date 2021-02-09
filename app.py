@@ -33,3 +33,5 @@ appstreamstack = AppstreamStack(DataSandbox, 'appstream-stack', vpc=vpcstack.vpc
 appstreamstartfleetstack = AppstreamStartFleetStack(DataSandbox, 'appstream-start-fleet-stack', appstreamrole=appstreamstack.appstream_role)
 notebookstack = NotebookStack(DataSandbox, 'notebook-stack', vpc=vpcstack.vpc, s3stack=s3stack.data_sandbox_bucket, appstreamsg=appstreamstack.appstream_security_group)
 samlstack = SamlStack(DataSandbox, 'saml-stack')
+
+app.synth()
