@@ -25,6 +25,8 @@ class AppstreamStack(cfn.NestedStack):
         #parameters
         appstream_environment_name = self.node.try_get_context("appstream_environment_name")
         appstream_image_name = self.node.try_get_context("appstream_image_name")
+        appstream_instance_type = self.node.try_get_context("appstream_instance_type")
+        appstream_fleet_type = self.node.try_get_context("appstream_fleet_type")
         
         #build AppStream security
         self.appstream_security_group = ec2.SecurityGroup(
@@ -66,8 +68,8 @@ class AppstreamStack(cfn.NestedStack):
         appstream_fleet = appstream.CfnFleet(self, 'AppStreamFleet',
              compute_capacity=appstream.CfnFleet.ComputeCapacityProperty(
                  desired_instances=5),
-             instance_type='stream.standard.medium',
-             fleet_type='ALWAYS_ON',
+             instance_type=appstream_instance_type,
+             fleet_type=appstream_fleet_type,
              idle_disconnect_timeout_in_seconds=0,
              disconnect_timeout_in_seconds=345600,
              max_user_duration_in_seconds=345600,
