@@ -19,8 +19,7 @@ Write-Host "Welcome, $UserName."
 # Get the bucket string of where AppStream syncs the Home Folder
 
 $BucketStatic = "appstream2-36fb080bb8-"
-$ArnID = $env:AppStream_Image_Arn -replace "[^0-9]", ''
-$AccountId = $ArnID.substring(1)
+$AccountId = $env:AppStream_Image_Arn.Split(":")[4]
 $BucketName = "$($BucketStatic)$($env:AWS_Region)-$($AccountId)".Trim()
 
 # Hash the Username using Get-FileHash
