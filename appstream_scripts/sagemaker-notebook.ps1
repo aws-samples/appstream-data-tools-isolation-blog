@@ -7,6 +7,7 @@ $UserName = $Env:AppStream_UserName
 $SessionId = $Env:AppStream_Session_ID
 $StackName = $Env:AppStream_Stack_Name
 $FleetName = $Env:AppStream_Resource_Name
+$AuthType = $Env:AppStream_User_Access_Mode
 $PrefixStatic = "user/custom/"
 $HomeLocation = "C:\Users\PhotonUser\My Files\Home Folder\"
 $HomeLocationRequests = "C:\Users\PhotonUser\My Files\Home Folder\"
@@ -37,7 +38,7 @@ $PrefixName = "$($prefixStatic)$($HashTrim)".ToLower()
 # Create the initial message to trigger the security lambda function
 
 $Str =@"
-{"user":"$UserName", "sessionId": "$SessionId", "bucketName": "$BucketName", "prefixName": "$PrefixName", "stackName": "$StackName", "fleetName" : "$FleetName"}
+{"user":"$UserName", "sessionId": "$SessionId", "bucketName": "$BucketName", "prefixName": "$PrefixName", "stackName": "$StackName", "fleetName": "$FleetName", "authType": "$AuthType"}
 "@
 
 $JsonPath = "$($HomeLocationRequests)session.json"
